@@ -28,32 +28,47 @@
 
 看一个例子：
 
+```
 #include <unistd.h>
 #include <sys/types.h>
 
 main ()  
 {  
-        pid_t pid;  
-        printf("fork!");    // printf("fork!\n"); 
-        pid=fork();  
-
-        if (pid < 0)  
-                printf("error in fork!");  
-        else if (pid == 0)  
-                printf("i am the child process, my process id is %d\n",getpid());  
-        else  
-                printf("i am the parent process, my process id is %\/n",getpid());  
+    pid_t pid;  
+​	printf("fork!");    // printf("fork!\n"); 
+​   pid=fork(); 
+ 	if (pid < 0)  
+            printf("error in fork!");  
+    else if (pid == 0)  
+            printf("i am the child process, my process id is %d\n",getpid());  
+    else  
+            printf("i am the parent process, my process id is %\/n",getpid());  
 }
+```
+
+
 结果是  
+
+```
 [root@localhost c]# ./a.out  
+
 fork!i am the child process, my process id is 4286  
+
 fork!i am the parent process, my process id is 4285 
+```
 
 但改成printf("fork!\n");后，结果是 
+
+```
 [root@localhost c]# ./a.out 
 fork!  
+
 i am the child process, my process id is 4286  
+
 i am the parent process, my process id is 4285 
+```
+
+
 
 为什么只有一个fork!打印出来了？上一个为什么有2个？
 
@@ -72,7 +87,6 @@ fork();
 exit(0);
 }
 ```
-
 
 这样只输出hello 
 原因是：stdin,stdout,stderr都是行缓冲 
