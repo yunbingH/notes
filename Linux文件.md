@@ -19,7 +19,7 @@ chmod u-s a.txt
 答案：当普通用户[omd]使用passwd命令的时候，系统看到passwd命令文件的属性有大写s后，表示这个命令的属主权限被omd用户获得,也就是omd用户获得文件/etc/shadow的root的rwx权限
 ```
 
-![passwd](\img\passwd.png)
+![passwd](https://yunbingh.oss-cn-beijing.aliyuncs.com/img/20200629185405.png)
 
 
 

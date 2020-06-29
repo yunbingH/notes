@@ -227,7 +227,7 @@ git中可以不提交更改，只提取分支上所有改动并储存，让开�
 
 ### 创建远程仓库
 
-![](git_notes/20191115154237.png) 
+![](https://yunbingh.oss-cn-beijing.aliyuncs.com/img/20200629185321.png) 
 
 ### 推送到远程仓库
 
@@ -273,7 +273,7 @@ git中可以不提交更改，只提取分支上所有改动并储存，让开�
 2. 手动解决冲突 
 3. ` git push` 
 
-![](git_notes/20191115164339.png)
+![](https://yunbingh.oss-cn-beijing.aliyuncs.com/img/20200629185322.png)
 
 ### 跨团队协作
 
@@ -296,11 +296,11 @@ git中可以不提交更改，只提取分支上所有改动并储存，让开�
 
 2.  Github添加公钥
 
-   ![](git_notes/20191115165957.png)
+   ![](https://yunbingh.oss-cn-beijing.aliyuncs.com/img/20200629185323.png)
 
 3. 复制SSH地址：
 
-   ![](git_notes/20191115170348.png)
+   ![](https://yunbingh.oss-cn-beijing.aliyuncs.com/img/20200629185324.png)
 
 4. 设置ssh别名：`$ git remote add origin_ssh SSH地址 ` 
 
