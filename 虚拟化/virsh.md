@@ -355,6 +355,678 @@
     --disable        禁止自动启动
 ```
 
+## 3. virsh监控虚拟机
+
+### `virsh domblklist`
+
+列出指定虚拟机上的磁盘信息
+
+```
+[root@node1 ~]# virsh help domblklist
+  NAME
+    domblklist - 列出所有域块
+ 
+  SYNOPSIS
+    domblklist <domain> [--inactive] [--details]
+ 
+  DESCRIPTION
+    获取域块设备小结
+ 
+  OPTIONS
+    [--domain] <string>  domain name, id or uuid
+    --inactive       获取不活跃而不是运行的配置
+    --details        type 和 device 值的附加显示
+```
+
+### `virsh domblkinfo`
+
+获取指定虚拟机的磁盘大小信息
+
+```
+[root@node1 ~]# virsh help domblkinfo     
+  NAME
+    domblkinfo - 域块设备大小信息
+ 
+  SYNOPSIS
+    domblkinfo <domain> [--device <string>] [--human] [--all]
+ 
+  DESCRIPTION
+    获取域块设备大小信息
+ 
+  OPTIONS
+    [--domain] <string>  domain name, id or uuid
+    --device <string>  阻止设备
+    --human          Human readable output
+    --all            display all block devices info
+```
+
+### `virsh domblkerror`
+
+列出指定虚拟机上的指定磁盘的错误信息
+
+```
+[root@node1 ~]# virsh help domblkerror
+  NAME
+    domblkerror - 在块设备中显示错误
+ 
+  SYNOPSIS
+    domblkerror <domain>
+ 
+  DESCRIPTION
+    显示块设备错误
+ 
+  OPTIONS
+    [--domain] <string>  domain name, id or uuid
+```
+
+### `virsh domiflist`
+
+列出指定虚拟机上的网卡
+
+```
+[root@node1 ~]# virsh help domiflist
+  NAME
+    domiflist - 列出所有域虚拟接口
+ 
+  SYNOPSIS
+    domiflist <domain> [--inactive]
+ 
+  DESCRIPTION
+    获取域虚拟接口小结
+ 
+  OPTIONS
+    [--domain] <string>  domain name, id or uuid
+    --inactive       获取不活跃而不是运行的配置
+```
+
+> kvm虚拟机上的网卡都对应在宿主机上的一个虚拟网卡 ；
+
+### `virsh domifaddr`
+
+获取指定虚拟机上的ip地址
+
+```
+[root@node1 ~]# virsh help domifaddr
+  NAME
+    domifaddr - Get network interfaces' addresses for a running domain
+ 
+  SYNOPSIS
+    domifaddr <domain> [--interface <string>] [--full] [--source <string>]
+ 
+  DESCRIPTION
+    Get network interfaces' addresses for a running domain
+ 
+  OPTIONS
+    [--domain] <string>  domain name, id or uuid
+    --interface <string>  network interface name
+    --full           always display names and MACs of interfaces
+    --source <string>  address source: 'lease', 'agent', or 'arp'
+```
+
+### `virsh domifstat`
+
+统计指定虚拟机上的指定网卡状态信息
+
+```
+[root@node1 ~]# virsh help domifstat
+  NAME
+    domifstat - 获得域网络接口状态
+ 
+  SYNOPSIS
+    domifstat <domain> <interface>
+ 
+  DESCRIPTION
+    获得运行域的网络接口状态。
+ 
+  OPTIONS
+    [--domain] <string>  domain name, id or uuid
+    [--interface] <string>  interface device specified by name or MAC Address
+```
+
+### `virsh dominfo`
+
+获取指定虚拟机的简要信息
+
+```
+[root@node1 ~]# virsh  help dominfo
+  NAME
+    dominfo - 域信息
+ 
+  SYNOPSIS
+    dominfo <domain>
+ 
+  DESCRIPTION
+    返回这个域的基本信息。
+ 
+  OPTIONS
+    [--domain] <string>  domain name, id or uuid
+```
+
+### `virsh dommemstat`
+
+获取指定虚拟机内存相关状态信息
+
+```
+[root@node1 ~]# virsh help dommemstat
+  NAME
+    dommemstat - 获取域的内存统计
+ 
+  SYNOPSIS
+    dommemstat <domain> [--period <number>] [--config] [--live] [--current]
+ 
+  DESCRIPTION
+    获取运行域的内存统计
+ 
+  OPTIONS
+    [--domain] <string>  domain name, id or uuid
+    --period <number>  以秒为单位设定集合期限
+    --config         影响下一次引导
+    --live           影响运行的域
+    --current        影响当前域
+```
+
+### `virsh domstate`
+
+获取指定虚拟机的状态信息
+
+```
+[root@node1 ~]# virsh help domstate
+  NAME
+    domstate - 域状态
+ 
+  SYNOPSIS
+    domstate <domain> [--reason]
+ 
+  DESCRIPTION
+    返回某个域的状态。
+ 
+  OPTIONS
+    [--domain] <string>  domain name, id or uuid
+    --reason         同时输出状态原因
+```
+
+### `virsh domstats`
+
+显示指定虚拟机的详细状态信息，如果不指定虚拟机名称表示显示当前宿主机上的所有虚拟机的详细状态信息
+
+```
+[root@node1 ~]# virsh help domstats
+  NAME
+    domstats - get statistics about one or multiple domains
+ 
+  SYNOPSIS
+    domstats [--state] [--cpu-total] [--balloon] [--vcpu] [--interface] [--block] [--perf] [--list-active] [--list-inactive] [--list-persistent] [--list-transient] [--list-running] [--list-paused] [--list-shutoff] [--list-other] [--raw] [--enforce] [--backing] [--nowait] [<domain>]...
+ 
+  DESCRIPTION
+    Gets statistics about one or more (or all) domains
+ 
+  OPTIONS
+    --state          report domain state
+    --cpu-total      report domain physical cpu usage
+    --balloon        report domain balloon statistics
+    --vcpu           report domain virtual cpu information
+    --interface      report domain network interface information
+    --block          report domain block device statistics
+    --perf           report domain perf event statistics
+    --list-active    list only active domains
+    --list-inactive  list only inactive domains
+    --list-persistent  list only persistent domains
+    --list-transient  list only transient domains
+    --list-running   list only running domains
+    --list-paused    list only paused domains
+    --list-shutoff   list only shutoff domains
+    --list-other     list only domains in other states
+    --raw            do not pretty-print the fields
+    --enforce        enforce requested stats parameters
+    --backing        add backing chain information to block stats
+    --nowait         report only stats that are accessible instantly
+    <domain>         list of domains to get stats for
+```
+
+> 提示：如果指定多个选项，它们之间是或关系，意思是仅显示指定选项的内容；
+
+### `virsh domif-getlink`
+
+获取指定虚拟机的指定接口状态
+
+```
+[root@node1 ~]# virsh help domif-getlink
+  NAME
+    domif-getlink - 获取虚拟接口链接状态
+ 
+  SYNOPSIS
+    domif-getlink <domain> <interface> [--config]
+ 
+  DESCRIPTION
+    获取域虚拟接口链接状态
+ 
+  OPTIONS
+    [--domain] <string>  domain name, id or uuid
+    [--interface] <string>  接口失败 (MAC 地址)
+    --config         获取持续接口状态
+```
+
+### `virsh domcontrol`
+
+获取指定虚拟机上的控制接口状态信息
+
+```
+[root@node1 ~]# virsh help domcontrol
+  NAME
+    domcontrol - 域控制接口状态
+ 
+  SYNOPSIS
+    domcontrol <domain>
+ 
+  DESCRIPTION
+    向域返回控制接口状态
+ 
+  OPTIONS
+    [--domain] <string>  domain name, id or uuid
+```
+
+## 4. virsh管理网络
+
+### `virsh net-list`
+
+列出网络
+
+```
+[root@node1 ~]# virsh help net-list
+  NAME
+    net-list - 列出网络
+ 
+  SYNOPSIS
+    net-list [--inactive] [--all] [--persistent] [--transient] [--autostart] [--no-autostart] [--uuid] [--name] [--table]
+ 
+  DESCRIPTION
+    返回网络列表
+ 
+  OPTIONS
+    --inactive       列出不活跃的网络
+    --all            列出不活跃和活跃的网络
+    --persistent     列出持久网络
+    --transient      列出临时网络
+    --autostart      列出启用 autostart 的网络
+    --no-autostart   列出禁用 autostart 的网络
+    --uuid           只列出 uuid
+    --name           list network names only
+    --table          列出表格（默认）
+    
+[root@node1 ~]# virsh net-list
+ 名称               状态     自动开始  持久
+----------------------------------------------------------
+ default              活动     是           是
+```
+
+> 提示：默认是以表格的形式列出激活的网络，如果要指定列出某种状态的网络，后面可以跟选项；从上面的信息可以看到当前只有一个默认的网络，处于活跃状态并且是自动启动；
+
+### `virsh net-dumpxml`
+
+显示指定网络的配置文件内容到标准输出
+
+```
+[root@node1 ~]# virsh  help net-dumpxml
+  NAME
+    net-dumpxml - XML 中的网络信息
+ 
+  SYNOPSIS
+    net-dumpxml <network> [--inactive]
+ 
+  DESCRIPTION
+    把网络信息作为一个 XML 输出到 stdout。
+ 
+  OPTIONS
+    [--network] <string>  网络名或 uuid
+    --inactive       显示不活跃定义的 XML
+```
+
+> 提示：通过上述命令我们可以把指定的某个网络导出，然后基于这个网络文件来当做模板文件，此后如果要创建一个网络，我们直接复制这个模板，然后修改私有的信息即可生成一个我们需要创建的网络的配置文件；
+
+### `virsh net-define`
+
+从指定xml配置文件定义一个网络或者基于指定xml来修改现有网络；类似virsh define命令的用法；
+
+示例：导出现有配置，修改ip地址，然后基于这个导出的配置来使用virsh net-define创建一个网络
+
+```
+[root@node1 ~]# virsh net-dumpxml default >default.xml
+[root@node1 ~]# cp default.xml test.xml
+[root@node1 ~]# diff default.xml test.xml
+2,3c2
+<   <name>default</name>
+<   <uuid>958c004e-7aa9-483e-a79e-c62884e88a08</uuid>
+---
+>   <name>test</name>
+9,11c8,10
+<   <bridge name='virbr0' stp='on' delay='0'/>
+<   <mac address='52:54:00:45:06:15'/>
+<   <ip address='192.168.122.1' netmask='255.255.255.0'>
+---
+>   <bridge name='virbr1' stp='on' delay='0'/>
+>   <mac address='52:54:00:45:06:16'/>
+>   <ip address='192.168.12.1' netmask='255.255.255.0'>
+13c12
+<       <range start='192.168.122.2' end='192.168.122.254'/>
+---
+>       <range start='192.168.12.2' end='192.168.12.254'/>
+[root@node1 ~]# cat test.xml
+<network connections='3'>
+  <name>test</name>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr1' stp='on' delay='0'/>
+  <mac address='52:54:00:45:06:16'/>
+  <ip address='192.168.12.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.12.2' end='192.168.12.254'/>
+    </dhcp>
+  </ip>
+</network>
+```
+
+> 提示：通常我们需要修改网络的名称，删除uuid，让其创建时自动生成，指定ip地址，修改mac地址以及dhcp地址池，网桥名称以及网络的类型;
+
+```
+[root@node1 ~]# virsh help net-define                 
+  NAME
+    net-define - define an inactive persistent virtual network or modify an existing persistent one from an XML file
+ 
+  SYNOPSIS
+    net-define <file>
+ 
+  DESCRIPTION
+    Define or modify a persistent virtual network.
+ 
+  OPTIONS
+    [--file] <string>  文件包括一个 XML网络描述
+ 
+ 
+[root@node1 ~]# virsh net-define test.xml                      
+从 test定义网络test.xml
+```
+
+> 提示：默认情况用define定义一个网络它并不会激活；
+
+### `virsh net-start`
+
+激活一个指定的非活跃网络
+
+```
+[root@node1 ~]# virsh help net-start
+  NAME
+    net-start - 开始一个(以前定义的)不活跃的网络
+ 
+  SYNOPSIS
+    net-start <network>
+ 
+  DESCRIPTION
+    开始一个网络.
+ 
+  OPTIONS
+    [--network] <string>  网络名或 uuid
+```
+
+### `virsh net-info`
+
+查看指定网络的简要信息
+
+```
+[root@node1 ~]# virsh help net-info
+  NAME
+    net-info - 网络信息
+ 
+  SYNOPSIS
+    net-info <network>
+ 
+  DESCRIPTION
+    返回关于这个网络的基本信息。
+ 
+  OPTIONS
+    [--network] <string>  网络名或 uuid
+```
+
+### `virsh net-autostart`
+
+标记指定网络为自动启动
+
+```
+[root@node1 ~]# virsh help net-autostart
+  NAME
+    net-autostart - 自动开始网络
+ 
+  SYNOPSIS
+    net-autostart <network> [--disable]
+ 
+  DESCRIPTION
+    设置一个网络在启动时自动开始.
+ 
+  OPTIONS
+    [--network] <string>  网络名或 uuid
+    --disable        禁止自动启动
+```
+
+### `virsh net-dhcp-leases`
+
+显示指定网络的dhcp的租赁信息
+
+```
+[root@node1 ~]# virsh help net-dhcp-leases
+  NAME
+    net-dhcp-leases - print lease info for a given network
+ 
+  SYNOPSIS
+    net-dhcp-leases <network> [--mac <string>]
+ 
+  DESCRIPTION
+    Print lease info for a given network
+ 
+  OPTIONS
+    [--network] <string>  网络名或 uuid
+    --mac <string>   MAC 地址
+```
+
+### `virsh net-edit`
+
+编辑指定虚拟机的配置文件
+
+> 提示：使用virsh net-edit，它默认就会去打开指定网络的配置文件，我们可以编辑这个配置文件来创建一个网络，也可以更改对应网络的配置，然后重读配置文件使对应配置生效；
+
+```
+编辑test网络配置文件的dhcp地址池地址和virbr1的地址；
+[root@node1 ~]# virsh net-edit test
+<network>
+  <name>test</name>
+  <uuid>f9452d96-55fa-4dbf-ad9c-b1ba99b7f2ad</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr1' stp='on' delay='0'/>
+  <mac address='52:54:00:45:06:16'/>
+  <ip address='192.168.11.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.11.2' end='192.168.11.254'/>
+    </dhcp>
+  </ip>
+</network>
+~                                                                                                                               
+~                                                                                                                               
+~                                                                                                                               
+~                                                                                                                               
+~                                                                                                                               
+"/tmp/virshJaE8MT.xml" 16L, 413C written
+已编辑网络 test XML 配置
+ 
+[root@node1 ~]# cat /etc/libvirt/qemu/networks/test.xml
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh net-edit test
+or other application using the libvirt API.
+-->
+ 
+<network>
+  <name>test</name>
+  <uuid>f9452d96-55fa-4dbf-ad9c-b1ba99b7f2ad</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr1' stp='on' delay='0'/>
+  <mac address='52:54:00:45:06:16'/>
+  <ip address='192.168.11.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.11.2' end='192.168.11.254'/>
+    </dhcp>
+  </ip>
+</network>
+[root@node1 ~]# virsh net-info test
+名称：       test
+UUID:           f9452d96-55fa-4dbf-ad9c-b1ba99b7f2ad
+活跃：       是
+持久：       是
+自动启动： 否
+桥接：       virbr1
+ 
+[root@node1 ~]# ip a l virbr1
+13: virbr1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN qlen 1000
+    link/ether 52:54:00:45:06:16 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.12.1/24 brd 192.168.12.255 scope global virbr1
+       valid_lft forever preferred_lft forever
+```
+
+> 提示：默认修改了指定活跃网络的配置文件后是不会马上生效的；创建持久网络后，默认配置文件存放在/etc/libvirt/qemu/network/目录下和对应网络名称同名的xml格式文件；
+
+让指定网络重读配置文件生效
+
+```
+[root@node1 ~]# virsh net-list
+ 名称               状态     自动开始  持久
+----------------------------------------------------------
+ default              活动     是           是
+ test                 活动     否           是
+ 
+[root@node1 ~]# virsh net-destroy test
+网络 test 被删除
+ 
+[root@node1 ~]# virsh net-list        
+ 名称               状态     自动开始  持久
+----------------------------------------------------------
+ default              活动     是           是
+ 
+[root@node1 ~]# virsh net-list --all
+ 名称               状态     自动开始  持久
+----------------------------------------------------------
+ default              活动     是           是
+ test                 不活跃  否           是
+ 
+[root@node1 ~]# virsh net-start test
+网络 test 已开始
+ 
+[root@node1 ~]# ip a l virbr1
+15: virbr1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN qlen 1000
+    link/ether 52:54:00:45:06:16 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.11.1/24 brd 192.168.11.255 scope global virbr1
+       valid_lft forever preferred_lft forever
+```
+
+> 提示：让其重读配置文件的方式我们只有重启网络，所以上面的操作上先停止对应网络，然后在启动对应网络；virsh net-destory命令是删除指定活跃状态的网络，就相当于停止操作；
+
+> 提示：对应网络上的虚拟机如果不重启，它默认会获取不到地址；
+
+### `virsh net-create`
+
+从指定xml文件创建一个非持久的临时网络，并激活
+
+```
+[root@node1 ~]# virsh help net-create
+  NAME
+    net-create - 从一个 XML 文件创建一个网络
+ 
+  SYNOPSIS
+    net-create <file>
+ 
+  DESCRIPTION
+    创建一个网络
+ 
+  OPTIONS
+    [--file] <string>  文件包括一个 XML网络描述
+```
+
+> 提示：这里提示下define出来的网络默认是持久的，create出来的网络不是持久的，所谓持久就是是否在/etc/libvirt/qemu/network/目录下生成配置文件，有配置文件的网络我们称它为持久网络，没有配置文件的网络我们称它为临时网络；
+
+### `virsh net-undefine`
+
+将指定持久网络取消定义，所谓取消定义就是转为非持久网络；
+
+```
+[root@node1 ~]# virsh help net-undefine
+  NAME
+    net-undefine - undefine a persistent network
+ 
+  SYNOPSIS
+    net-undefine <network>
+ 
+  DESCRIPTION
+    Undefine the configuration for a persistent network.
+ 
+  OPTIONS
+    [--network] <string>  网络名或 uuid
+ 
+ 
+[root@node1 ~]# virsh net-list --all
+ 名称               状态     自动开始  持久
+----------------------------------------------------------
+ default              活动     是           是
+ test                 活动     否           是
+ test1                不活跃  否           是
+ test2                活动     否           否
+ 
+[root@node1 ~]# ll /etc/libvirt/qemu/networks/
+总用量 12
+drwx------ 2 root root  25 8月  16 22:59 autostart
+-rw------- 1 root root 576 8月  13 23:31 default.xml
+-rw------- 1 root root 641 8月  16 23:23 test1.xml
+-rw------- 1 root root 639 8月  16 23:09 test.xml
+[root@node1 ~]# virsh net-undefine test1
+网络 test1 已经被取消定义
+ 
+[root@node1 ~]# virsh net-list --all         
+ 名称               状态     自动开始  持久
+----------------------------------------------------------
+ default              活动     是           是
+ test                 活动     否           是
+ test2                活动     否           否
+ 
+[root@node1 ~]# ll /etc/libvirt/qemu/networks/
+总用量 8
+drwx------ 2 root root  25 8月  16 22:59 autostart
+-rw------- 1 root root 576 8月  13 23:31 default.xml
+-rw------- 1 root root 639 8月  16 23:09 test.xml
+[root@node1 ~]# virsh net-undefine test
+网络 test 已经被取消定义
+ 
+[root@node1 ~]# virsh net-list --all         
+ 名称               状态     自动开始  持久
+----------------------------------------------------------
+ default              活动     是           是
+ test                 活动     否           否
+ test2                活动     否           否
+ 
+[root@node1 ~]# ll /etc/libvirt/qemu/networks/
+总用量 4
+drwx------ 2 root root  25 8月  16 22:59 autostart
+-rw------- 1 root root 576 8月  13 23:31 default.xml
+```
+
+> 提示：net-undefine会把活跃状态的持久网络修改成非持久，它的操作就是把对应配置文件删除，并不会删除活跃的网络实例；将非活跃的持久化网络改成非持久，它会删除其配置文件和网络实例；
+
 
 
 
