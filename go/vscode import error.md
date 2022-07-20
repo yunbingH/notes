@@ -9,7 +9,7 @@ import 同一个项目下的本地package，报can not find in any GOROOT or GOP
 
 第 3 步：就在它的下方，您会找到 settings.json，点击它
 
-第4步：粘贴下面的代码他们的
+第4步：粘贴下面的代码
 "gopls": {"experimentalWorkspaceModule":true}
 
 第 5 步：保存并重新启动 Vscode，您现在可以开始了。
