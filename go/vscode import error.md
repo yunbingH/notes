@@ -14,4 +14,3 @@ import 同一个项目下的本地package，报can not find in any GOROOT or GOP
 
 第 5 步：保存并重新启动 Vscode，您现在可以开始了。
 ```
-
